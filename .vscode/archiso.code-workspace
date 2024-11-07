@@ -1,0 +1,94 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+
+	"settings": {},
+
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			// Build ISO
+			{
+				"label": "Build ISO",
+				"type": "shell",
+				"command": "sudo",
+				"args": 
+				[
+					"mkarchiso",
+					"-L", "${input:isoLabel}",
+					"-w",	"./build",
+					"-o",	"./iso",
+					"-v",
+					"${input:config}",
+				],
+				"group": {"kind": "build"},
+				"detail": "Builds the iso file.",
+			},
+			// Burn to USB Drive
+			{
+				"label": "Burn to USD Drive",
+				"type": "shell",
+				"command": "sudo",
+				"args": 
+				[
+					"dd",
+					"if=${input:inputFile}",
+					"of=${input:outputFile}",
+					"bs=4M",
+					"status=progress"
+				],
+				"group": {"kind": "build"},
+				"detail": "Creates a bootable usb drive.",
+			},
+			// Build and Burn!
+			{
+				"label": "Build and Burn",
+				"dependsOrder": "sequence",
+				"dependsOn": ["Build ISO", "Burn to USD Drive"],
+				"group": {"kind": "build"},
+				"detail": "Builds and burns the iso to a USB drive. ('Build ISO', 'Burn to USD Drive')",
+			},
+			// Clean Workspace
+			{
+				"label": "Clean Workspace",
+				"type": "shell",
+				"command": "sudo",
+				"options": {"cwd": "${workspaceFolder}"},
+				"args":	["rm", "-rf", "./build", "./iso"],
+				"group": {"kind": "build"},
+				"detail": "Cleans the workspace.",
+			},
+		],
+		// Inputs
+		"inputs": [
+			{
+				"id": "config",
+				"description": "Path to the configuration folder.",
+				"default": "./archlive",
+				"type": "promptString"
+			},
+			{
+				"id": "isoLabel",
+				"description": "The name will be prefixed with 'Fedora-' and suffixed with releaseServer. ('Fedora-isoLabel-releaseServer')",
+				"default": "archiso-liveusb-gnome",
+				"type": "promptString"
+			},
+			{
+				"id": "inputFile",
+				"description": "Input path for the iso file.",
+				"default": "./iso/archlinux-2024.11.07-x86_64.iso",
+				"type": "promptString"
+			},
+			{
+				"id": "outputFile",
+				"description": "Output path for the device.",
+				"default": "/dev/sda",
+				"type": "promptString"
+			},
+		]
+	}	
+}
+
