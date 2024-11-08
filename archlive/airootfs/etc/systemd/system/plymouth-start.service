@@ -1,0 +1,12 @@
+[Unit]
+Description=Plymouth Boot Screen
+After=systemd-udev-trigger.service
+DefaultDependencies=no
+
+[Service]
+ExecStart=/usr/bin/plymouthd --mode=boot
+ExecStartPost=/usr/bin/plymouth --show-splash
+ExecStopPost=/usr/bin/plymouth --quit
+
+[Install]
+WantedBy=sysinit.target

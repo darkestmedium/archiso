@@ -1,0 +1,5 @@
+root:x:0:root
+adm:x:4:liveusr
+wheel:x:10:liveusr
+uucp:x:14:liveusr
+liveusr:x:1000:
