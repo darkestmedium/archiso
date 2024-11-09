@@ -135,6 +135,8 @@ networkmanager
 xf86-video-amdgpu
 mesa
 vulkan-radeon
+
+linux-headers
 nvidia-open-dkms
 nvidia-utils
 nvidia-settings
@@ -170,4 +172,6 @@ snapshot
 evince
 
 
-firefox
+brave-bin
+visual-studio-code-bin
+github-desktop-bin

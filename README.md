@@ -14,11 +14,11 @@ Whether you’re setting up a portable development environment or a clean Arch i
 
 ### Additional packages and tweaks include:
 - Brave Browser
-- VS Code
+- Visual Studio Code
 - GitHub Desktop
 - C++ Development Environment (GCC and Clang)
 - Proprietary Nvidia Drivers 
-- Fastfetch (C++ Neofetch replacement)
+- Fastfetch (C++ Neofetch replacement) [github.com/fastfetch-cli/fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - Plymouth Theme [archlive/airootfs/usr/share/plymouth/themes/logo-mac-style](archlive/airootfs/usr/share/plymouth/themes/logo-mac-style)
 - Font IBM Plex Sans [archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans](archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans)
 - Font Intel One Mono [archlive/airootfs/usr/share/fonts/ttf/intel-one-mono](archlive/airootfs/usr/share/fonts/ttf/intel-one-mono)
@@ -44,7 +44,9 @@ git clone https://github.com/darkestmedium/archiso.git && cd ./archiso
 
 
 ### For Visual Studio Code Users:
-You can build the ISO using the Visual Studio Code tasks by pressing **Ctrl + Shift + B**, selecting **"Build ISO"**, and waiting for it to finish. Afterward, you can burn/copy it to a USB drive with the **"Burn to USB Drive"**. Alternatively you can use the **Build and Burn** task to do everything in one go.
+You can build the ISO using the Visual Studio Code tasks by pressing **Ctrl + Shift + B**, selecting **"Build ISO"**, and waiting for it to finish.
+Afterward, you can burn/copy it to a USB drive with the **"Burn to USB Drive"**.
+Alternatively you can use the **Build and Burn** task to do everything in one go.
 Available build tasks:
 - Build ISO
 - Burn to USB Drive
@@ -69,7 +71,7 @@ sudo mkarchiso \
 
 ```
 sudo dd \
-  if=${input:inputFile} \
-  of=${input:outputFile} \
-  bs=4M status=progress
+	if=${input:inputFile} \
+	of=${input:outputFile} \
+	bs=4M status=progress
 ```

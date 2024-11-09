@@ -15,6 +15,21 @@ ln -s /usr/lib/systemd/system/NetworkManager.service ./archlive/airootfs/etc/sys
 ln -s /usr/lib/systemd/system/bluetooth.service ./archlive/airootfs/etc/systemd/system/multi-user.target.wants/bluetooth.service
 
 
+
+
+# Nvidia
+# Enable NVIDIA Kernel Modules: Ensure the NVIDIA kernel modules are loaded at boot by creating a modprobe file in your ArchISO configuration:
+mkdir -p ./archlive/airootfs/etc/modules-load.d/
+echo "nvidia nvidia_modeset nvidia_uvm nvidia_drm" > ./archlive/airootfs/etc/modules-load.d/nvidia.conf
+# Enable DRM Kernel Mode Setting (KMS): Add a configuration file for NVIDIA to enable DRM KMS, which is essential for using the NVIDIA GPU with Wayland:
+echo "options nvidia_drm modeset=1" > ./archlive/airootfs/etc/modprobe.d/nvidia.conf
+# Configure Xorg: If you’re using Xorg as a fallback, you’ll need an Xorg configuration file to specify the NVIDIA GPU. Place it under airootfs/etc/X11/xorg.conf.d/:
+mkdir -p airootfs/etc/X11/xorg.conf.d
+echo -e 'Section "Device"\n    Identifier "NVIDIA Card"\n    Driver "nvidia"\nEndSection' > airootfs/etc/X11/xorg.conf.d/20-nvidia.conf
+
+
+
+
 # Plymouth
 # 1 Edit mkinitcpio.conf: In the ArchISO profile, navigate to the
 # airootfs/etc/mkinitcpio.conf.d/archiso.conf file.
@@ -72,7 +87,34 @@ echo "ELECTRON_OZONE_PLATFORM_HINT=auto" | sudo tee -a ./archlive/airootfs/etc/e
 
 
 
+# Creating local repositories from AUR packages
+mkdir -p ./temp/aur-local && cd ./temp
 
+# 1 Build the AUR Packages Locally: Download and build the desired AUR packages (brave-bin and visual-studio-code-bin in this case):
+# Brave Browser
+git clone https://aur.archlinux.org/brave-bin.git
+cd brave-bin && makepkg -si --noconfirm
+cd ..
+# Visual Studio Code
+git clone https://aur.archlinux.org/visual-studio-code-bin.git
+cd visual-studio-code-bin && makepkg -si --noconfirm
+cd ..
+# GitHub Desktop
+git clone https://aur.archlinux.org/github-desktop-bin.git
+cd github-desktop-bin && makepkg -si --noconfirm
+cd ..
+
+# 2 Create a Directory for the Custom Repository: Set up a directory, for example /temp/customrepo, and move the built packages (*.pkg.tar.zst) there:
+mv brave-bin/*.pkg.tar.zst ./aur-local/
+mv visual-studio-code-bin/*.pkg.tar.zst ./aur-local/
+
+# 3 Generate a Database for the Repository: Inside the /temp/customrepo directory, generate a repository database:
+repo-add ./aur-local/aur-local.db.tar.gz ./aur-local/*.pkg.tar.zst
+
+# 4 Update pacman.conf to Include the Custom Repository: Add your custom repository to archlive/pacman.conf to allow mkarchiso to use it during the image build process:
+# [aurlocal]
+# SigLevel = Optional TrustAll
+# Server = file:///temp/customrepo
 
 
 
