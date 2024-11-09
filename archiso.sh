@@ -28,6 +28,7 @@ ln -s /usr/lib/systemd/system/bluetooth.service ./archlive/airootfs/etc/systemd/
 # linux   /vmlinuz-linux
 # initrd  /initramfs-linux.img
 # options archisobasedir=arch archisolabel=ARCH_YYYYMM quiet splash
+
 echo "[Unit]
 Description=Plymouth Boot Screen
 After=systemd-udev-trigger.service
@@ -39,12 +40,34 @@ ExecStartPost=/usr/bin/plymouth --show-splash
 ExecStopPost=/usr/bin/plymouth --quit
 
 [Install]
-WantedBy=sysinit.target" > ./archlive/airootfs/etc/systemd/system/plymouth-start.service
+WantedBy=sysinit.target" > ./archlive/airootfs/etc/systemd/system/sysinit.target.wants/plymouth.service
+
+# Custom plymouth theme
+mkdir -p ./archlive/airootfs/usr/share/plymouth/themes/YourTheme
+cp -r /usr/share/plymouth/themes/YourTheme ./archlive/airootfs/usr/share/plymouth/themes/
+
+mkdir -p ./archlive/airootfs/etc/plymouth/
+echo "[Daemon]
+Theme=logo-mac-style" > ./archlive/airootfs/etc/plymouth/plymouthd.conf
 
 
+# Fonts
+# Intel One Mono
+wget https://github.com/intel/intel-one-mono/releases/download/V1.4.0/ttf.zip; unzip ttf.zip
+sudo mkdir -p ./archlive/airootfs/usr/share/fonts/ttf/intel-one-mono
+sudo cp ./ttf/*.ttf ./archlive/airootfs/usr/share/fonts/ttf/intel-one-mono;
+sudo rm -r ./ttf.zip ./ttf
+
+# IBM Plex
+wget https://github.com/IBM/plex/releases/download/%40ibm%2Fplex-sans%401.0.0/ibm-plex-sans.zip; unzip ibm-plex-sans.zip
+sudo mkdir -p ./archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans
+sudo cp ./ibm-plex-sans/fonts/complete/ttf/*.ttf ./archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans
+sudo rm -r ./ibm-plex-sans ./ibm-plex-sans.zip
 
 
-
+# Enable fractional scaling on all electron apps under wayland - requires reboot
+# sudo mkdir -p ./archlive/airootfs/etc/environment
+echo "ELECTRON_OZONE_PLATFORM_HINT=auto" | sudo tee -a ./archlive/airootfs/etc/environment
 
 
 
@@ -61,3 +84,7 @@ WantedBy=sysinit.target" > ./archlive/airootfs/etc/systemd/system/plymouth-start
 
 # 2 Build the iso
 sudo mkarchiso -v -w ./build -o ./iso ./archlive
+
+
+run_archiso -u -i ./iso/archlinux-2024.11.08-x86_64.iso
+
