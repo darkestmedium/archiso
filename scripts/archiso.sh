@@ -3,7 +3,19 @@
 # 1 Copy base specs to our archlive directory.
 cp -r /usr/share/archiso/configs/releng/ ./archlive
 
+mkdir -p ./archlive/airootfs/etc/sudoers.d/
+echo "liveusr ALL=(ALL) NOPASSWD: ALL" >> ./archlive/airootfs/etc/sudoers.d/g_wheel
 
+
+# Zram-generator
+echo "[zram0]
+zram-size = ram * 2
+compression-algorithm = zstd" | sudo tee ./archlive/airootfs/etc/systemd/zram-generator.conf
+
+
+# Bluetooth fix for lenovo 
+sudo rfkill list bluetooth
+echo "blacklist ideapad_laptop" | sudo tee ./archlive/airootfs/etc/modprobe.d/blacklist-ideapad.conf
 
 
 # Login Manager
@@ -17,6 +29,7 @@ ln -s /usr/lib/systemd/system/bluetooth.service ./archlive/airootfs/etc/systemd/
 
 
 
+
 # Nvidia
 # Enable NVIDIA Kernel Modules: Ensure the NVIDIA kernel modules are loaded at boot by creating a modprobe file in your ArchISO configuration:
 mkdir -p ./archlive/airootfs/etc/modules-load.d/
@@ -26,6 +39,7 @@ echo "options nvidia_drm modeset=1" > ./archlive/airootfs/etc/modprobe.d/nvidia.
 # Configure Xorg: If you’re using Xorg as a fallback, you’ll need an Xorg configuration file to specify the NVIDIA GPU. Place it under airootfs/etc/X11/xorg.conf.d/:
 mkdir -p airootfs/etc/X11/xorg.conf.d
 echo -e 'Section "Device"\n    Identifier "NVIDIA Card"\n    Driver "nvidia"\nEndSection' > airootfs/etc/X11/xorg.conf.d/20-nvidia.conf
+
 
 
 
@@ -86,77 +100,6 @@ echo "ELECTRON_OZONE_PLATFORM_HINT=auto" | sudo tee -a ./archlive/airootfs/etc/e
 
 
 
-
-# Creating local repositories from AUR packages
-mkdir -p ./temp/aur-local && cd ./temp
-
-# 1 Build the AUR Packages Locally: Download and build the desired AUR packages (brave-bin and visual-studio-code-bin in this case):
-
-# Brave Browser
-git clone https://aur.archlinux.org/brave-bin.git
-cd brave-bin && makepkg -si --noconfirm
-cd ..
-mv brave-bin/*.pkg.tar.zst ./aur-local/
-
-# Visual Studio Code
-git clone https://aur.archlinux.org/visual-studio-code-bin.git
-cd visual-studio-code-bin && makepkg -si --noconfirm
-cd ..
-mv visual-studio-code-bin/*.pkg.tar.zst ./aur-local/
-
-# GitHub Desktop
-git clone https://aur.archlinux.org/github-desktop-bin.git
-cd github-desktop-bin && makepkg -si --noconfirm
-cd ..
-mv github-desktop-bin/*.pkg.tar.zst ./aur-local/
-
-# Dash to Dock
-git clone https://aur.archlinux.org/gnome-shell-extension-dash-to-dock.git
-cd gnome-shell-extension-dash-to-dock && makepkg -si --noconfirm
-cd ..
-mv gnome-shell-extension-dash-to-dock/*.pkg.tar.zst ./aur-local/
-
-# System Monitor
-git clone https://aur.archlinux.org/gnome-shell-extension-system-monitor.git
-cd gnome-shell-extension-system-monitor && makepkg -si --noconfirm
-cd ..
-mv gnome-shell-extension-system-monitor/*.pkg.tar.zst ./aur-local/
-
-# Launch new Instance
-git clone https://aur.archlinux.org/gnome-shell-extension-launch-new-instance.git
-cd gnome-shell-extension-launch-new-instance && makepkg -si --noconfirm
-cd ..
-mv gnome-shell-extension-launch-new-instance/*.pkg.tar.zst ./aur-local/
-
-# Rounded Window Corners Reborn
-git clone https://aur.archlinux.org/gnome-shell-extension-rounded-window-corners-reborn-git.git
-cd gnome-shell-extension-rounded-window-corners-reborn-git && makepkg -si --noconfirm
-cd ..
-mv gnome-shell-extension-rounded-window-corners-reborn-git/*.pkg.tar.zst ./aur-local/
-
-# Tiling Shell
-git clone https://aur.archlinux.org/gnome-shell-extension-tilingshell.git
-cd gnome-shell-extension-tilingshell && makepkg -si --noconfirm
-cd ..
-mv gnome-shell-extension-tilingshell/*.pkg.tar.zst ./aur-local/
-
-# Just 
-git clone https://aur.archlinux.org/gnome-shell-extension-just-perfection-desktop.git
-cd gnome-shell-extension-just-perfection-desktop && makepkg -si --noconfirm
-cd ..
-mv gnome-shell-extension-just-perfection-desktop/*.pkg.tar.zst ./aur-local/
-
-# 3 Generate a Database for the Repository: Inside the /temp/customrepo directory, generate a repository database:
-repo-add ./aur-local/aur-local.db.tar.gz ./aur-local/*.pkg.tar.zst
-
-# 4 Update pacman.conf to Include the Custom Repository: Add your custom repository to archlive/pacman.conf to allow mkarchiso to use it during the image build process:
-# [aur-local]
-# SigLevel = Optional TrustAll
-# Server = file:///temp/aur-local
-
-
-
-
 # 2 Build the iso
 sudo mkarchiso -v -w ./build -o ./iso ./archlive
 
@@ -172,16 +115,14 @@ nvidia-settings
 
 
 
-# Zram-generator
-echo "[zram0]
-zram-size = ram * 2
-compression-algorithm = zstd" | sudo tee ./archlive/airootfs/etc/systemd/zram-generator.conf
-
-
-# Bluetooth fix for lenovo 
-sudo rfkill list bluetooth
-echo "blacklist ideapad_laptop" | sudo tee ./archlive/airootfs/etc/modprobe.d/blacklist-ideapad.conf
-
-
-
 gsettings set org.gnome.SessionManager auto-save-session true
+
+
+# Gnome settings
+mkdir -p ./archlive/airootfs/etc/dconf/db/local.d
+mkdir -p ./archlive/airootfs/etc/dconf/db/user
+dconf dump / > ./archlive/airootfs/etc/dconf/db/local.d/01-settings
+echo -e "user-db:user\nsystem-db:local" | sudo tee ./archlive/airootfs/etc/dconf/profile/user
+
+
+
