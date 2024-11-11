@@ -9,15 +9,15 @@ This is a customized Arch Linux build based on a minimal GNOME Workstation setup
 Whether you’re setting up a portable development environment or a clean Arch install, this ISO offers a lightweight, software-dev-ready GNOME environment with room for further customization.
 
 ![Plymouth](resources/images/plymouth.png)
+![ArchLive](resources/images/archlive.png)
 
-
+![ArchLiveOverview](resources/images/archliveoverview.png)
 
 ### Additional packages and tweaks include:
 - Brave Browser
 - Visual Studio Code
 - GitHub Desktop
-- C++ Development Environment (GCC and Clang)
-- Proprietary Nvidia Drivers 
+- Proprietary Nvidia Drivers (nvidia-open-dkms)
 - Fastfetch (C++ Neofetch replacement) [github.com/fastfetch-cli/fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - Plymouth Theme [archlive/airootfs/usr/share/plymouth/themes/logo-mac-style](archlive/airootfs/usr/share/plymouth/themes/logo-mac-style)
 - Font IBM Plex Sans [archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans](archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans)
@@ -27,8 +27,8 @@ Whether you’re setting up a portable development environment or a clean Arch i
 
 Full package list can be found in [archlive/packages.x86_64](archlive/packages.x86_64)
 
-
 ## How to Use:
+
 First you need to:
 
 ```
@@ -44,6 +44,7 @@ git clone https://github.com/darkestmedium/archiso.git && cd ./archiso
 
 
 ### For Visual Studio Code Users:
+![VSCode](resources/images/vscode.png)
 You can build the ISO using the Visual Studio Code tasks by pressing **Ctrl + Shift + B**, selecting **"Build ISO"**, and waiting for it to finish.
 Afterward, you can burn/copy it to a USB drive with the **"Burn to USB Drive"**.
 Alternatively you can use the **Build and Burn** task to do everything in one go.
