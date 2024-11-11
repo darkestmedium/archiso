@@ -1,0 +1,164 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small",
+    "padding": {
+      "top": 3
+    }
+    //     "type": "iterm",
+    //     "source": "~/Desktop/apple1.png",
+    //     "width": 28,
+    //     "height": 12
+  },
+
+  "display": {
+    "size": {
+      "maxPrefix": "GB",
+      "ndigits": 2
+    },
+    // "reset_", "bright_", "dim_", "italic_", "underline_", "blink_", "inverse_", "hidden_", "strike_", "light_",
+    // "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "default"
+    "color": {
+      "output": "white",
+      "keys": "white"
+    }
+  },
+
+
+  "modules": [
+    // "break",
+    // "title",
+    "break",
+    {
+      "type": "os",
+      // The following values are passed:
+      //   {1}: Name of the kernel (Linux, WIN32_NT, Darwin, FreeBSD) - sysname
+      //   {2}: Name of the OS - name
+      //   {3}: Pretty name of the OS - pretty-name
+      //   {4}: ID of the OS - id
+      //   {5}: ID like of the OS - id-like
+      //   {6}: Variant of the OS - variant
+      //   {7}: Variant ID of the OS - variant-id
+      //   {8}: Version of the OS - version
+      //   {9}: Version ID of the OS - version-id
+      //   {10}: Version codename of the OS - codename
+      //   {11}: Build ID of the OS - build-id
+      //   {12}: Architecture of the OS - arch
+      "key": "OS",
+      "format": "{3}"
+    },
+    {
+      "type": "kernel",
+      // The following values are passed:
+      //   {1}: Sysname - sysname
+      //   {2}: Release - release
+      //   {3}: Version - version
+      //   {4}: Architecture - arch
+      //   {5}: Display version - display-version
+      //   {6}: Page size - page-size
+      "format": "{2}"
+    },
+    "break",
+    {
+      "type": "host",
+      // The following values are passed:
+      //   {1}: product family - family
+      //   {2}: product name - name
+      //   {3}: product version - version
+      //   {4}: product sku - sku
+      //   {5}: product vendor - vendor
+      //   {6}: product serial number - serial
+      //   {7}: product uuid - uuid
+      // The default is something similar to "{2} {3}".
+      "format": "{5} {1}"
+    },
+    {
+      "type": "cpu",
+      // The following values are passed:
+      //   {1}: Name - name
+      //   {2}: Vendor - vendor
+      //   {3}: Physical core count - cores-physical
+      //   {4}: Logical core count - cores-logical
+      //   {5}: Online core count - cores-online
+      //   {6}: Base frequency (formatted) - freq-base
+      //   {7}: Max frequency (formatted) - freq-max
+      //   {8}: Temperature (formatted) - temperature
+      //   {9}: Logical core count grouped by frequency - core-types
+      //   {10}: Bios limited frequency (formatted) - freq-bios-limit
+      // The default is something similar to "{1} ({5}) @ {7} GHz".
+      "format": "{6} {5} Cores {1}"
+    },
+    {
+      "type": "memory",
+      // The following values are passed:
+      //   {1}: Used size - used
+      //   {2}: Total size - total
+      //   {3}: Percentage used (num) - percentage
+      //   {4}: Percentage used (bar) - percentage-bar
+      // The default is something similar to "{1} / {2} ({3})".
+      "format": "{2} ({3})"
+    },
+    {
+      "type": "gpu",
+      // The following values are passed:
+      //   {1}: GPU vendor - vendor
+      //   {2}: GPU name - name
+      //   {3}: GPU driver - driver
+      //   {4}: GPU temperature - temperature
+      //   {5}: GPU core count - core-count
+      //   {6}: GPU type - type
+      //   {7}: GPU total dedicated memory - dedicated-total
+      //   {8}: GPU used dedicated memory - dedicated-used
+      //   {9}: GPU total shared memory - shared-total
+      //   {10}: GPU used shared memory - shared-used
+      //   {11}: The platform API used when detecting the GPU - platform-api
+      //   {12}: Current frequency in GHz - frequency
+      // The default is something similar to "{1} {2}".
+      // "key": "GPU",
+      "format": "{1} {2}"  // Custom GPU name
+    },
+    {
+      "type": "disk",
+      // The following values are passed:
+      //   {1}: Size used - size-used
+      //   {2}: Size total - size-total
+      //   {3}: Size percentage num - size-percentage
+      //   {4}: Files used - files-used
+      //   {5}: Files total - files-total
+      //   {6}: Files percentage num - files-percentage
+      //   {7}: True if external volume - is-external
+      //   {8}: True if hidden volume - is-hidden
+      //   {9}: Filesystem - filesystem
+      //   {10}: Label / name - name
+      //   {11}: True if read-only - is-readonly
+      //   {12}: Create time in local timezone - create-time
+      //   {13}: Size percentage bar - size-percentage-bar
+      //   {14}: Files percentage bar - files-percentage-bar
+      // The default is something similar to "{1} / {2} ({3}) - {9}".
+      "format": "{1} / {2} ({3}) - {9}"
+    },
+    "break",
+    {
+      "type": "localip",
+      // The following values are passed:
+      //   {1}: Local IPv4 address - ipv4
+      //   {2}: Local IPv6 address - ipv6
+      //   {3}: Physical (MAC) address - mac
+      //   {4}: Interface name - ifname
+      //   {5}: Is default route - is-default-route
+      //   {6}: MTU size in bytes - mtu
+      // The default is something similar to "{1}".
+      "format": "{1}"
+    },
+    {
+      "type": "publicip",
+      // The following values are passed:
+      //   {1}: Public IP address - ip
+      //   {2}: Location - location
+      // The default is something similar to "{1} ({2})".
+      "format": "{1} ({2})"
+    },
+    "break"
+    // "colors"  // Adds color blocks at the bottom, optional
+  ]
+}

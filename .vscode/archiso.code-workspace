@@ -79,7 +79,7 @@
 			{
 				"id": "inputFile",
 				"description": "Input path for the iso file.",
-				"default": "./iso/archlinux-2024.11.07-x86_64.iso",
+				"default": "./iso/archlinux-2024.11.10-x86_64.iso",
 				"type": "promptString"
 			},
 			{
