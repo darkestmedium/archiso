@@ -10,7 +10,6 @@ Whether you’re setting up a portable development environment or a clean Arch i
 
 ![Plymouth](resources/images/plymouth.png)
 ![ArchLive](resources/images/archlive.png)
-
 ![ArchLiveOverview](resources/images/archliveoverview.png)
 
 ### Additional packages and tweaks include:

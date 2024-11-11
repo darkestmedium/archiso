@@ -164,12 +164,24 @@ sudo mkarchiso -v -w ./build -o ./iso ./archlive
 run_archiso -u -i ./iso/archlinux-2024.11.10-x86_64.iso
 
 
-
-
-
-
 # Nvidia drivers
 linux-headers
 nvidia-open-dkms
 nvidia-utils
 nvidia-settings
+
+
+
+# Zram-generator
+echo "[zram0]
+zram-size = ram * 2
+compression-algorithm = zstd" | sudo tee ./archlive/airootfs/etc/systemd/zram-generator.conf
+
+
+# Bluetooth fix for lenovo 
+sudo rfkill list bluetooth
+echo "blacklist ideapad_laptop" | sudo tee ./archlive/airootfs/etc/modprobe.d/blacklist-ideapad.conf
+
+
+
+gsettings set org.gnome.SessionManager auto-save-session true
