@@ -15,19 +15,26 @@ compression-algorithm = zstd" | sudo tee ./archlive/airootfs/etc/systemd/zram-ge
 
 # Bluetooth fix for lenovo 
 sudo rfkill list bluetooth
-echo "blacklist ideapad_laptop" | sudo tee ./archlive/airootfs/etc/modprobe.d/blacklist-ideapad.conf
+echo "blacklist ideapad_laptop" | sudo tee ./archlive/airootfs/etc/modprobe.d/broadcom-wl.conf
+
+# mkdir -p ./archlive/airootfs/etc/bluetooth/
+# echo "[Policy]
+# AutoEnable=true" | sudo tee ./archlive/airootfs/etc/bluetooth/main.conf
 
 
-# Login Manager
+# GDM Login Manager
 ls -l /etc/systemd/system/display-manager.service
 ln -s /usr/lib/systemd/system/gdm.service ./archlive/airootfs/etc/systemd/system/display-manager.service
+
+mkdir -p ./archlive/airootfs/etc/gdm/
+echo "[daemon]
+AutomaticLoginEnable=True
+AutomaticLogin=liveusr" | sudo tee ./archlive/airootfs/etc/gdm/custom.conf
+
 
 # Create Networking Services WiFi and Bluetooth
 ln -s /usr/lib/systemd/system/NetworkManager.service ./archlive/airootfs/etc/systemd/system/multi-user.target.wants/NetworkManager.service
 ln -s /usr/lib/systemd/system/bluetooth.service ./archlive/airootfs/etc/systemd/system/multi-user.target.wants/bluetooth.service
-
-
-
 
 
 # Nvidia
@@ -39,9 +46,6 @@ echo "options nvidia_drm modeset=1" > ./archlive/airootfs/etc/modprobe.d/nvidia.
 # Configure Xorg: If you’re using Xorg as a fallback, you’ll need an Xorg configuration file to specify the NVIDIA GPU. Place it under airootfs/etc/X11/xorg.conf.d/:
 mkdir -p airootfs/etc/X11/xorg.conf.d
 echo -e 'Section "Device"\n    Identifier "NVIDIA Card"\n    Driver "nvidia"\nEndSection' > airootfs/etc/X11/xorg.conf.d/20-nvidia.conf
-
-
-
 
 
 # Plymouth
@@ -98,31 +102,17 @@ sudo rm -r ./ibm-plex-sans ./ibm-plex-sans.zip
 # sudo mkdir -p ./archlive/airootfs/etc/environment
 echo "ELECTRON_OZONE_PLATFORM_HINT=auto" | sudo tee -a ./archlive/airootfs/etc/environment
 
-
-
 # 2 Build the iso
 sudo mkarchiso -v -w ./build -o ./iso ./archlive
 
 # Lastly run and test in qemu
 run_archiso -u -i ./iso/archlinux-2024.11.10-x86_64.iso
 
-
-# Nvidia drivers
-linux-headers
-nvidia-open-dkms
-nvidia-utils
-nvidia-settings
-
-
-
 gsettings set org.gnome.SessionManager auto-save-session true
-
 
 # Gnome settings
 mkdir -p ./archlive/airootfs/etc/dconf/db/local.d
 mkdir -p ./archlive/airootfs/etc/dconf/db/user
 dconf dump / > ./archlive/airootfs/etc/dconf/db/local.d/01-settings
 echo -e "user-db:user\nsystem-db:local" | sudo tee ./archlive/airootfs/etc/dconf/profile/user
-
-
 

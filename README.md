@@ -10,6 +10,7 @@ Whether you’re setting up a portable development environment or a clean Arch i
 
 ![Plymouth](resources/images/plymouth.png)
 ![ArchLive](resources/images/archlive.png)
+![ArchLiveWM](resources/images/archlivewm.png)
 ![ArchLiveOverview](resources/images/archliveoverview.png)
 
 ### Additional packages and tweaks include:
@@ -22,7 +23,8 @@ Whether you’re setting up a portable development environment or a clean Arch i
 - Font IBM Plex Sans [archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans](archlive/airootfs/usr/share/fonts/ttf/ibm-plex-sans)
 - Font Intel One Mono [archlive/airootfs/usr/share/fonts/ttf/intel-one-mono](archlive/airootfs/usr/share/fonts/ttf/intel-one-mono)
 - A universal solution to fix blurry Electron apps when using fractional scaling on Wayland with HiDPI monitors [archlive/airootfs/etc/environment](archlive/airootfs/etc/environment)
-- Multilib repository is on [archlive/pacman.conf](archlive/pacman.conf)
+- Multilib repository is set to true [archlive/pacman.conf](archlive/pacman.conf)
+- Unifies dark theme across all GTK apps. (Older than GTK4)
 
 Full package list can be found in [archlive/packages.x86_64](archlive/packages.x86_64)
 

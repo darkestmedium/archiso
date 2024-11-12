@@ -26,14 +26,12 @@ cd ..
 mv github-desktop-bin/*.pkg.tar.zst ./aurlocal/
 rm -rf ./github-desktop-bin
 
-
 # Dash to Dock
 git clone https://aur.archlinux.org/gnome-shell-extension-dash-to-dock.git
 cd gnome-shell-extension-dash-to-dock && makepkg -si --noconfirm
 cd ..
 mv gnome-shell-extension-dash-to-dock/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-dash-to-dock
-
 
 # System Monitor
 git clone https://aur.archlinux.org/gnome-shell-extension-system-monitor.git
@@ -42,14 +40,12 @@ cd ..
 mv gnome-shell-extension-system-monitor/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-system-monitor
 
-
 # Launch new Instance
 git clone https://aur.archlinux.org/gnome-shell-extension-launch-new-instance.git
 cd gnome-shell-extension-launch-new-instance && makepkg -si --noconfirm
 cd ..
 mv gnome-shell-extension-launch-new-instance/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-launch-new-instance
-
 
 # Rounded Window Corners Reborn
 git clone https://aur.archlinux.org/gnome-shell-extension-rounded-window-corners-reborn-git.git
@@ -58,7 +54,6 @@ cd ..
 mv gnome-shell-extension-rounded-window-corners-reborn-git/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-rounded-window-corners-reborn-git
 
-
 # Tiling Shell
 git clone https://aur.archlinux.org/gnome-shell-extension-tilingshell.git
 cd gnome-shell-extension-tilingshell && makepkg -si --noconfirm
@@ -66,14 +61,12 @@ cd ..
 mv gnome-shell-extension-tilingshell/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-tilingshell
 
-
 # Just 
 git clone https://aur.archlinux.org/gnome-shell-extension-just-perfection-desktop.git
 cd gnome-shell-extension-just-perfection-desktop && makepkg -si --noconfirm
 cd ..
 mv gnome-shell-extension-just-perfection-desktop/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-just-perfection-desktop
-
 
 # 3 Generate a Database for the Repository: Inside the /temp/customrepo directory, generate a repository database:
 repo-add ./aurlocal/aurlocal.db.tar.gz ./aurlocal/*.pkg.tar.zst

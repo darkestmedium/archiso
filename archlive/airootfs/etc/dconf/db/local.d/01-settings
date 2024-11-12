@@ -1,39 +1,28 @@
 [org/gnome/desktop/app-folders]
-folder-children=['Utilities', 'YaST', 'Pardus', '90b32565-e953-483d-a1dc-92ff6cf1dc18', 'b9787765-aeb1-4cc8-a894-9c3963760a30', 'b970f31a-5123-4aa3-8b87-48a21c885ffe']
+folder-children=['Internet', 'Multimedia', 'Office', 'Utilities']
 
-[org/gnome/desktop/app-folders/folders/90b32565-e953-483d-a1dc-92ff6cf1dc18]
+[org/gnome/desktop/app-folders/folders/Internet]
 apps=['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'qv4l2.desktop', 'qvidcap.desktop']
 name='Internet'
 
-[org/gnome/desktop/app-folders/folders/Pardus]
-categories=['X-Pardus-Apps']
-name='X-Pardus-Apps.directory'
-translate=true
+[org/gnome/desktop/app-folders/folders/Multimedia]
+apps=['org.gnome.Snapshot.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.Music.desktop', 'org.gnome.Totem.desktop']
+name='Multimedia'
+
+[org/gnome/desktop/app-folders/folders/Office]
+apps=['org.gnome.Calculator.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Weather.desktop', 'org.gnome.Evince.desktop', 'simple-scan.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Characters.desktop', 'org.gnome.TextEditor.desktop']
+name='Office'
 
 [org/gnome/desktop/app-folders/folders/Utilities]
-apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
-categories=['X-GNOME-Utilities']
-name='X-GNOME-Utilities.directory'
+apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Extensions.desktop', 'org.gnome.tweaks.desktop', 'gnome-system-log.desktop', 'nvidia-settings.desktop']
+name='Utilities'
 translate=true
-
-[org/gnome/desktop/app-folders/folders/YaST]
-categories=['X-SuSE-YaST']
-name='suse-yast.directory'
-translate=true
-
-[org/gnome/desktop/app-folders/folders/b970f31a-5123-4aa3-8b87-48a21c885ffe]
-apps=['org.gnome.Totem.desktop', 'simple-scan.desktop', 'org.gnome.Snapshot.desktop', 'org.gnome.Music.desktop']
-name='Unnamed Folder'
-
-[org/gnome/desktop/app-folders/folders/b9787765-aeb1-4cc8-a894-9c3963760a30]
-apps=['org.gnome.Contacts.desktop', 'org.gnome.Weather.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Maps.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop']
-name='Unnamed Folder'
 
 [org/gnome/desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///usr/local/share/backgrounds/background'
-picture-uri-dark='file:///usr/local/share/backgrounds/background'
+picture-uri='file:///usr/local/share/backgrounds/alaska-umnak'
+picture-uri-dark='file:///usr/local/share/backgrounds/alaska-umnak'
 primary-color='#26a269'
 secondary-color='#000000'
 
@@ -63,12 +52,6 @@ application-id='code.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-boxes]
-application-id='org.gnome.Boxes.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-console]
-application-id='org.gnome.Console.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
@@ -103,30 +86,8 @@ auto-raise=false
 button-layout=':minimize,maximize,close'
 focus-mode='sloppy'
 
-[org/gnome/epiphany/state]
-is-maximized=false
-window-size=(1320, 1088)
-
-[org/gnome/evolution-data-server]
-migrated=true
-
-[org/gnome/gimagereader]
-highlightmode='plain text'
-language='eng:en'
-replacelist=''
-scandev=0
-wingeom=[35, 32, 1248, 873]
-
 [org/gnome/gnome-session]
 auto-save-session=true
-
-[org/gnome/gnome-system-monitor]
-show-dependencies=false
-show-whose-processes='user'
-
-[org/gnome/gnome-system-monitor/proctree]
-col-26-visible=false
-col-26-width=0
 
 [org/gnome/mutter]
 edge-tiling=false
@@ -140,11 +101,6 @@ toggle-tiled-right=@as []
 default-folder-viewer='list-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
-
-[org/gnome/nautilus/window-state]
-initial-size=(1130, 699)
-initial-size-file-chooser=(948, 550)
-maximized=false
 
 [org/gnome/portal/filechooser/brave-browser]
 last-folder-path='/home/dm/Pictures/Private'
@@ -160,20 +116,19 @@ ambient-enabled=false
 
 [org/gnome/shell]
 app-picker-layout=[{'90b32565-e953-483d-a1dc-92ff6cf1dc18': <{'position': <0>}>, 'b9787765-aeb1-4cc8-a894-9c3963760a30': <{'position': <1>}>, 'b970f31a-5123-4aa3-8b87-48a21c885ffe': <{'position': <2>}>, 'org.gnome.Settings.desktop': <{'position': <3>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <4>}>, 'org.gnome.Extensions.desktop': <{'position': <5>}>, 'htop.desktop': <{'position': <6>}>, 'Utilities': <{'position': <7>}>, 'yelp.desktop': <{'position': <8>}>, 'steam.desktop': <{'position': <9>}>, 'org.gnome.Tour.desktop': <{'position': <10>}>, 'vim.desktop': <{'position': <11>}>, 'nvidia-settings.desktop': <{'position': <12>}>, 'org.gnome.Epiphany.desktop': <{'position': <13>}>, 'org.gnome.Boxes.desktop': <{'position': <14>}>, 'org.gnome.TextEditor.desktop': <{'position': <15>}>, 'Counter-Strike 2.desktop': <{'position': <16>}>, 'Dota 2.desktop': <{'position': <17>}>, 'kitty.desktop': <{'position': <18>}>, 'Steam Linux Runtime 3.0 (sniper).desktop': <{'position': <19>}>, 'gimagereader-gtk.desktop': <{'position': <20>}>}]
-disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'system-monitor-next@paradoxxx.zero.gmail.com']
 enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'tilingshell@ferrarodomenico.com', 'appindicatorsupport@rgcjonas.gmail.com', 'just-perfection-desktop@just-perfection', 'rounded-window-corners@fxgn', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['brave-browser.desktop', 'org.gnome.Console.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'github-desktop.desktop', 'org.gnome.Software.desktop']
+favorite-apps=['brave-browser.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'github-desktop.desktop', 'org.gnome.Software.desktop']
 welcome-dialog-last-shown-version='47.1'
 
 [org/gnome/shell/extensions/dash-to-dock]
 apply-custom-theme=false
 background-color='rgb(0,0,0)'
-background-opacity=0.80000000000000004
+background-opacity=0.8
 custom-background-color=true
 custom-theme-shrink=true
 dash-max-icon-size=40
 dock-position='BOTTOM'
-height-fraction=0.9000000000000000
+height-fraction=0.9
 preferred-monitor=-2
 running-indicator-dominant-color=true
 running-indicator-style='DASHES'
@@ -195,14 +150,6 @@ selected-layouts=['Layout 1']
 [org/gnome/shell/keybindings]
 show-screen-recording-ui=['<Shift><Alt>5']
 show-screenshot-ui=['<Shift><Alt>4']
-
-[org/gnome/shell/world-clocks]
-locations=@av []
-
-[org/gnome/software]
-check-timestamp=int64 1731321993
-first-run=false
-flatpak-purge-timestamp=int64 1731318068
 
 [org/gnome/tweaks]
 show-extensions-notice=false
