@@ -1,5 +1,5 @@
 [org/gnome/desktop/app-folders]
-folder-children=['Internet', 'Multimedia', 'Office', 'Utilities']
+folder-children=['Internet', 'Multimedia', 'Office', 'Utilities', 'Live']
 
 [org/gnome/desktop/app-folders/folders/Internet]
 apps=['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'qv4l2.desktop', 'qvidcap.desktop']
@@ -17,6 +17,10 @@ name='Office'
 apps=['org.gnome.SystemMonitor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Extensions.desktop', 'org.gnome.tweaks.desktop', 'gnome-system-log.desktop', 'nvidia-settings.desktop']
 name='Utilities'
 translate=true
+
+[org/gnome/desktop/app-folders/folders/Live]
+apps=['stoken-gui.desktop', 'lftp.desktop', 'stoken-gui-small.desktop', 'vim.desktop']
+name='Live'
 
 [org/gnome/desktop/background]
 color-shading-type='solid'
