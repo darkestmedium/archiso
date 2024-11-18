@@ -100,7 +100,8 @@ sudo rm -r ./ibm-plex-sans ./ibm-plex-sans.zip
 
 # Enable fractional scaling on all electron apps under wayland - requires reboot
 # sudo mkdir -p ./archlive/airootfs/etc/environment
-echo "ELECTRON_OZONE_PLATFORM_HINT=auto" | sudo tee -a ./archlive/airootfs/etc/environment
+echo "ELECTRON_OZONE_PLATFORM_HINT=auto
+QT_STYLE_OVERRIDE=adwaita" | sudo tee -a ./archlive/airootfs/etc/environment
 
 # 2 Build the iso
 sudo mkarchiso -v -w ./build -o ./iso ./archlive
@@ -116,3 +117,10 @@ mkdir -p ./archlive/airootfs/etc/dconf/db/user
 dconf dump / > ./archlive/airootfs/etc/dconf/db/local.d/01-settings
 echo -e "user-db:user\nsystem-db:local" | sudo tee ./archlive/airootfs/etc/dconf/profile/user
 
+
+
+# Add these to archlive/packages.x86_64 in order to install Nvidia Drivers
+linux-headers
+nvidia-open-dkms
+nvidia-utils
+nvidia-settings

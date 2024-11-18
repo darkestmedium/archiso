@@ -29,7 +29,7 @@
 			},
 			// Burn to USB Drive
 			{
-				"label": "Burn to USD Drive",
+				"label": "Burn to USB Drive",
 				"type": "shell",
 				"command": "sudo",
 				"args": 
@@ -47,7 +47,7 @@
 			{
 				"label": "Build and Burn",
 				"dependsOrder": "sequence",
-				"dependsOn": ["Build ISO", "Burn to USD Drive"],
+				"dependsOn": ["Build ISO", "Burn to USB Drive"],
 				"group": {"kind": "build"},
 				"detail": "Builds and burns the iso to a USB drive. ('Build ISO', 'Burn to USD Drive')",
 			},

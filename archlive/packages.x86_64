@@ -132,14 +132,11 @@ plymouth
 
 networkmanager
 
+xf86-video-intel
 xf86-video-amdgpu
 mesa
 vulkan-radeon
-
-linux-headers
-nvidia-open-dkms
-nvidia-utils
-nvidia-settings
+vulkan-intel
 
 
 gdm
@@ -161,9 +158,9 @@ gnome-shell-extension-appindicator
 gnome-shell-extension-dash-to-dock
 gnome-shell-extension-tilingshell
 gnome-shell-extension-just-perfection-desktop
-gnome-shell-extension-launch-new-instance
 gnome-shell-extension-rounded-window-corners-reborn-git
-gnome-shell-extension-system-monitor
+gnome-shell-extension-launch-new-instance-git
+gnome-shell-extension-system-monitor-git
 gnome-software
 gnome-system-monitor
 gnome-terminal
@@ -179,10 +176,15 @@ evince
 totem
 
 adw-gtk-theme
+adwaita-qt5
+adwaita-qt6
 
 brave-bin
 visual-studio-code-bin
 github-desktop-bin
+git
 
 fastfetch
-git
+vlc
+
+rsync

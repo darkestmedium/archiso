@@ -34,18 +34,18 @@ mv gnome-shell-extension-dash-to-dock/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-dash-to-dock
 
 # System Monitor
-git clone https://aur.archlinux.org/gnome-shell-extension-system-monitor.git
-cd gnome-shell-extension-system-monitor && makepkg -si --noconfirm
+git clone https://aur.archlinux.org/gnome-shell-extension-system-monitor-git.git
+cd gnome-shell-extension-system-monitor-git && makepkg -si --noconfirm
 cd ..
-mv gnome-shell-extension-system-monitor/*.pkg.tar.zst ./aurlocal/
-rm -rf ./gnome-shell-extension-system-monitor
+mv gnome-shell-extension-system-monitor-git/*.pkg.tar.zst ./aurlocal/
+rm -rf ./gnome-shell-extension-system-monitor-git
 
 # Launch new Instance
-git clone https://aur.archlinux.org/gnome-shell-extension-launch-new-instance.git
-cd gnome-shell-extension-launch-new-instance && makepkg -si --noconfirm
+git clone https://aur.archlinux.org/gnome-shell-extension-launch-new-instance-git.git
+cd gnome-shell-extension-launch-new-instance-git && makepkg -si --noconfirm
 cd ..
-mv gnome-shell-extension-launch-new-instance/*.pkg.tar.zst ./aurlocal/
-rm -rf ./gnome-shell-extension-launch-new-instance
+mv gnome-shell-extension-launch-new-instance-git/*.pkg.tar.zst ./aurlocal/
+rm -rf ./gnome-shell-extension-launch-new-instance-git
 
 # Rounded Window Corners Reborn
 git clone https://aur.archlinux.org/gnome-shell-extension-rounded-window-corners-reborn-git.git
@@ -67,6 +67,13 @@ cd gnome-shell-extension-just-perfection-desktop && makepkg -si --noconfirm
 cd ..
 mv gnome-shell-extension-just-perfection-desktop/*.pkg.tar.zst ./aurlocal/
 rm -rf ./gnome-shell-extension-just-perfection-desktop
+
+# Adwaita Qt
+git clone https://aur.archlinux.org/adwaita-qt.git
+cd adwaita-qt && makepkg -si --noconfirm
+cd ..
+mv adwaita-qt/*.pkg.tar.zst ./aurlocal/
+rm -rf ./adwaita-qt
 
 # 3 Generate a Database for the Repository: Inside the /temp/customrepo directory, generate a repository database:
 repo-add ./aurlocal/aurlocal.db.tar.gz ./aurlocal/*.pkg.tar.zst
