@@ -128,13 +128,20 @@ xl2tpd
 zsh
 
 
-plymouth
-
+linux-headers
 networkmanager
+nftables
+rsync
+fastfetch
 
 xf86-video-amdgpu
 mesa
 vulkan-radeon
+nvidia-open-dkms
+nvidia-utils
+nvidia-settings
+
+plymouth
 
 gdm
 gnome-backgrounds
@@ -164,14 +171,12 @@ gnome-terminal
 gnome-text-editor
 gnome-tweaks
 gnome-weather
-
 baobab
 nautilus
 loupe
 snapshot
 evince
 totem
-
 adw-gtk-theme
 adwaita-qt5
 adwaita-qt6
@@ -180,7 +185,3 @@ brave-bin
 visual-studio-code-bin
 github-desktop-bin
 git
-
-fastfetch
-
-rsync
